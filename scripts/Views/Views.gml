@@ -8,7 +8,7 @@ function View() constructor {
 	headerColor = c_white;
 	
 	canReturn = false;
-		
+	
 	step = function() {
 		getInput();
 		
@@ -119,3 +119,39 @@ function InventoryView() : View() constructor {
 		draw_text(global.guiWidth/2, 100, "desenhando inventario");
 	}
 };
+
+///@func CutsceneView(_textsArray)
+///@param _textsArray {string[]}
+function CutsceneView(_textsArray) : View() constructor {
+	header = "";
+	
+	actualTextIndex = 0;
+	texts = _textsArray;
+	
+	textAlpha = 0;
+	timerToAdvance = 240;
+	
+	step = function() {
+		textAlpha = approach(textAlpha, 1 - (timerToAdvance < 0), 1 / room_speed * 2);
+		var _text = texts[actualTextIndex];
+		timerToAdvance--;
+		if (timerToAdvance < 0) {
+			if (actualTextIndex < array_length(texts) - 1) {
+				if (textAlpha <= 0) {
+					actualTextIndex++;
+					textLen = 0;
+					timerToAdvance = 240;
+				}
+			} else {
+				ds_stack_pop(global.viewStack);	
+			}
+		}
+	}
+	
+	mainDraw = function() {
+		var _text = texts[actualTextIndex];
+		draw_set_alpha(textAlpha);
+		draw_text_ext(global.guiWidth/2, global.guiHeight/2, _text, 20, global.guiWidth * 0.80);
+		draw_set_alpha(1);
+	}
+}

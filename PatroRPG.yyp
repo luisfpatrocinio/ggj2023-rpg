@@ -28,6 +28,8 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Public","folderPath":"folders/Extensions/GMLive/Public.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Ultimate Camera","folderPath":"folders/Scripts/Ultimate Camera.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"System","folderPath":"folders/Scripts/Ultimate Camera/System.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Utils","folderPath":"folders/Scripts/Utils.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Essentials (Old Menu & Input System)","folderPath":"folders/Scripts/Utils/Essentials (Old Menu & Input System).yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"gcmt-dll.dll","CopyToMask":0,"filePath":"datafiles/GMLive",},
@@ -97,6 +99,7 @@
     {"id":{"name":"GMLive_notOnce","path":"scripts/GMLive_notOnce/GMLive_notOnce.yy",},},
     {"id":{"name":"sTwo_Headed_Ogre","path":"sprites/sTwo_Headed_Ogre/sTwo_Headed_Ogre.yy",},},
     {"id":{"name":"sSnail_View1","path":"sprites/sSnail_View1/sSnail_View1.yy",},},
+    {"id":{"name":"approach","path":"scripts/approach/approach.yy",},},
     {"id":{"name":"sSklug2","path":"sprites/sSklug2/sSklug2.yy",},},
     {"id":{"name":"GMLive_seekSetOp","path":"scripts/GMLive_seekSetOp/GMLive_seekSetOp.yy",},},
     {"id":{"name":"sWhiteDragon_v2","path":"sprites/sWhiteDragon_v2/sWhiteDragon_v2.yy",},},

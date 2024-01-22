@@ -15,6 +15,8 @@
     {"name":"Public","order":2,"path":"folders/Extensions/GMLive/Public.yy",},
     {"name":"Ultimate Camera","order":4,"path":"folders/Scripts/Ultimate Camera.yy",},
     {"name":"System","order":1,"path":"folders/Scripts/Ultimate Camera/System.yy",},
+    {"name":"Utils","order":6,"path":"folders/Scripts/Utils.yy",},
+    {"name":"Essentials (Old Menu & Input System)","order":1,"path":"folders/Scripts/Utils/Essentials (Old Menu & Input System).yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"Actions","order":5,"path":"scripts/Actions/Actions.yy",},

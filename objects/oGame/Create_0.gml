@@ -88,3 +88,11 @@ var _startView = new View();
 		})
 	];
 ds_stack_push(global.viewStack, _startView);
+
+// Cutscenes:
+var _cutsceneView = new CutsceneView([
+	"No colorido circo de Diversópolis, vivia Tristonho, o palhaço de alma cinzenta. Seu rosto, envolto em maquiagem alegre, escondia a dificuldade que tinha em sorrir genuinamente.",
+	"Toda noite, sob as luzes do picadeiro, Tristonho encantava a plateia com acrobacias e brincadeiras, mas seu sorriso parecia mais uma máscara do que uma expressão sincera. As crianças riam, sem perceber a tristeza por trás dos olhos do palhaço.",
+	"Um dia, uma criança curiosa, com olhos brilhantes, aproximou-se de Tristonho nos bastidores. \"Por que você não sorri de verdade?\", perguntou. As palavras ecoaram na alma do palhaço, desencadeando uma jornada para encontrar a alegria que ele nunca soube que estava perdida."
+]);
+ds_stack_push(global.viewStack, _cutsceneView);
