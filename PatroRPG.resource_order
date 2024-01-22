@@ -92,6 +92,7 @@
     {"name":"sSquid","order":27,"path":"sprites/sSquid/sSquid.yy",},
     {"name":"sLightFish2","order":47,"path":"sprites/sLightFish2/sLightFish2.yy",},
     {"name":"sTeddy","order":33,"path":"sprites/sTeddy/sTeddy.yy",},
+    {"name":"oTransitionCut","order":4,"path":"objects/oTransitionCut/oTransitionCut.yy",},
     {"name":"sMallow","order":51,"path":"sprites/sMallow/sMallow.yy",},
     {"name":"sSnowBall","order":26,"path":"sprites/sSnowBall/sSnowBall.yy",},
     {"name":"sMushroom3","order":6,"path":"sprites/sMushroom3/sMushroom3.yy",},

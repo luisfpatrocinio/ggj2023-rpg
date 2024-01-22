@@ -75,10 +75,7 @@ function View() constructor {
 		
 	}
 	
-	draw = function() {
-		// Limpar tela
-		draw_clear_alpha(c_black, 0);
-		
+	draw = function() {	
 		drawBackground();
 		
 		drawHeader();
@@ -143,8 +140,12 @@ function CutsceneView(_textsArray) : View() constructor {
 					timerToAdvance = 240;
 				}
 			} else {
+				instance_create_depth(0, 0, 0, oTransitionCut);
 				ds_stack_pop(global.viewStack);	
 			}
+		} else {
+			getInput();
+			if (pressedKey) timerToAdvance = 0;
 		}
 	}
 	

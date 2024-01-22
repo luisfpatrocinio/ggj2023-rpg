@@ -137,6 +137,7 @@
     {"id":{"name":"sSquid","path":"sprites/sSquid/sSquid.yy",},},
     {"id":{"name":"sLightFish2","path":"sprites/sLightFish2/sLightFish2.yy",},},
     {"id":{"name":"sTeddy","path":"sprites/sTeddy/sTeddy.yy",},},
+    {"id":{"name":"oTransitionCut","path":"objects/oTransitionCut/oTransitionCut.yy",},},
     {"id":{"name":"sMallow","path":"sprites/sMallow/sMallow.yy",},},
     {"id":{"name":"sSnowBall","path":"sprites/sSnowBall/sSnowBall.yy",},},
     {"id":{"name":"sMushroom3","path":"sprites/sMushroom3/sMushroom3.yy",},},
