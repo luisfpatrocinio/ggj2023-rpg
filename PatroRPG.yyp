@@ -55,6 +55,7 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"Actions","path":"scripts/Actions/Actions.yy",},},
     {"id":{"name":"sSlime_View2","path":"sprites/sSlime_View2/sSlime_View2.yy",},},
     {"id":{"name":"sWisp_View1","path":"sprites/sWisp_View1/sWisp_View1.yy",},},
     {"id":{"name":"GMLiveAPI","path":"scripts/GMLiveAPI/GMLiveAPI.yy",},},

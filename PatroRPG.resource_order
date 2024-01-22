@@ -17,6 +17,7 @@
     {"name":"System","order":1,"path":"folders/Scripts/Ultimate Camera/System.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"Actions","order":5,"path":"scripts/Actions/Actions.yy",},
     {"name":"sSlime_View2","order":20,"path":"sprites/sSlime_View2/sSlime_View2.yy",},
     {"name":"sWisp_View1","order":40,"path":"sprites/sWisp_View1/sWisp_View1.yy",},
     {"name":"GMLiveAPI","order":3,"path":"scripts/GMLiveAPI/GMLiveAPI.yy",},

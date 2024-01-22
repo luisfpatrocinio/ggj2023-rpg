@@ -13,6 +13,6 @@ if (keyboard_check_pressed(vk_space)) {
 }
 
 if (keyboard_check_pressed(ord("1"))) {
-	var _msg = new Message($"Testando. Data: {date_datetime_string(date_current_datetime())}");
+	var _msg = $"Testando. Data: {date_datetime_string(date_current_datetime())}";
 	addMessage(_msg);
 }

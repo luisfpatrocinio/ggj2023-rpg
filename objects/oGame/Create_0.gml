@@ -70,6 +70,7 @@ player.level = 1;
 
 enemies = [];
 
+// Cria a primeira tela, de testes: 
 var _startView = new View();
 	_startView.header = "View de testes.";
 	_startView.actions = [
@@ -78,6 +79,9 @@ var _startView = new View();
 			if (irandom(3) == 0) {
 				addMessage("Opa deu sorte hein.");
 			}
+		}),
+		new Action("Inventário", function() {
+			ds_stack_push(global.viewStack, new InventoryView());	
 		}),
 		new Action("Sair", function() {
 			addMessage("Saindo...");	
