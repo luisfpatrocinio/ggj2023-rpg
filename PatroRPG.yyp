@@ -119,6 +119,7 @@
     {"id":{"name":"sSklug","path":"sprites/sSklug/sSklug.yy",},},
     {"id":{"name":"sSlime_View3","path":"sprites/sSlime_View3/sSlime_View3.yy",},},
     {"id":{"name":"sSlug","path":"sprites/sSlug/sSlug.yy",},},
+    {"id":{"name":"sndGroan4","path":"sounds/sndGroan4/sndGroan4.yy",},},
     {"id":{"name":"sSeaWorm","path":"sprites/sSeaWorm/sSeaWorm.yy",},},
     {"id":{"name":"GMLive_seekEval","path":"scripts/GMLive_seekEval/GMLive_seekEval.yy",},},
     {"id":{"name":"Input","path":"scripts/Input/Input.yy",},},

@@ -3,6 +3,10 @@ live_auto_call
 global.viewStack = ds_stack_create();
 global.viewToBePushed = undefined;
 
+global.creatureFound = false;
+
+global.selectedText = 0;
+
 function Entity() constructor {
 	// Atributos:
 	name = "";
@@ -75,6 +79,12 @@ enemies = [];
 // Cria tela de testes: Floresta Debug
 var _startView = new View();
 	_startView.header = "Floresta Debug";
+	_startView.setupBackground({
+		bgColor: make_color_rgb(0, 140, 0)
+	});
+	_startView.init = function() {
+		ds_stack_top(global.viewStack).actions[0].name = global.creatureFound ? "Visitar Criatura Estranha" : "Explorar"
+	}
 	_startView.actions = [
 		new Action("Explorar", function() {
 			addMessage("Você está explorando.");
@@ -85,15 +95,40 @@ var _startView = new View();
 		        "Entre os arbustos de variáveis, você avista um coelho peculiar. Ele parece estar fazendo loop em torno de um ponto indefinido.",
 		    ];
 			
-			var _randInd = irandom(array_length(mensagens) - 1);
+			var _randInd = 1;
 			addMessage(mensagens[_randInd]);
+			global.selectedText++;
+			global.selectedText = uc_wrap(global.selectedText, 0, 3);
 			
 			if (_randInd == 1) {
 				var _nextView = new View();
 					_nextView.header = "Profundezas da Floresta Debug";
+					_nextView.init = function() {
+						if (global.creatureFound) {
+							playSFX(sndGroan4);
+						}
+					}
+					_nextView.setupBackground({
+						bgColor: make_color_rgb(0, 100, 0),
+						textColor: c_orange
+					});
+					_nextView.mainDraw = function() {
+						if (global.creatureFound) {
+							draw_sprite(sWisp_View1, 0, global.guiWidth/2, global.guiHeight/2);
+						}
+					}
 					_nextView.actions = [
 						new Action("Explorar", function() {
-							addMessage("Parece que nada foi implementado aqui ainda.");
+							if (!global.creatureFound) {
+								addMessage("O que é isso?");
+								addMessage("Uma criatura estranha surge.");
+								ds_stack_top(global.viewStack).functionToCall = function() {
+									ds_stack_top(global.viewStack).initialized = false;
+									global.creatureFound = true;	
+								}
+							} else {
+								addMessage("Melhor não mexer com esse diabo.");	
+							}
 						}),
 						new InventoryAction(),
 						new Action("Sair", function() {
@@ -112,9 +147,14 @@ var _startView = new View();
 ds_stack_push(global.viewStack, _startView);
 
 // Cutscenes:
-var _cutsceneView = new CutsceneView([
-	"No colorido circo de Diversópolis, vivia Tristonho, o palhaço de alma cinzenta. Seu rosto, envolto em maquiagem alegre, escondia a dificuldade que tinha em sorrir genuinamente.",
-	"Toda noite, sob as luzes do picadeiro, Tristonho encantava a plateia com acrobacias e brincadeiras, mas seu sorriso parecia mais uma máscara do que uma expressão sincera. As crianças riam, sem perceber a tristeza por trás dos olhos do palhaço.",
-	"Um dia, uma criança curiosa, com olhos brilhantes, aproximou-se de Tristonho nos bastidores. \"Por que você não sorri de verdade?\", perguntou. As palavras ecoaram na alma do palhaço, desencadeando uma jornada para encontrar a alegria que ele nunca soube que estava perdida."
-]);
+var _historiaFlorestaDebug = [
+    "Numa dimensão de algoritmos e pixels, surge a Floresta Debug, um espaço mágico de árvores binárias e caminhos de código.",
+    "Este é um lugar temporário, um mero esboço, onde cada árvore guarda segredos de bugs fictícios e desafios simulados.",
+    "Aventure-se por entre os bits e bytes, sabendo que esta é uma terra de placeholders, aguardando a verdadeira magia da sua imaginação."
+];
+var _cutsceneView = new CutsceneView(_historiaFlorestaDebug);
+	_cutsceneView.setupBackground({
+		bgColor: make_color_rgb(0, 20, 0),
+		textColor: c_ltgray
+	});
 ds_stack_push(global.viewStack, _cutsceneView);

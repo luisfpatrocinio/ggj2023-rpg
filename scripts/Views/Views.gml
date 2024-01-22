@@ -1,6 +1,8 @@
 ///@func View()
 ///@desc Tela a ser exibida e adicionada na global.viewStack.
 function View() constructor {
+	initialized = false;
+	
 	selectedAction = 0;
 	actions = [];
 	header = "";
@@ -11,12 +13,34 @@ function View() constructor {
 	
 	functionToCall = undefined;
 	
+	backgroundStruct = {
+		bgColor: c_navy,
+		textColor: c_black
+	}
+	
+	setupBackground = function(_struct) {
+		var _names = variable_struct_get_names(_struct);
+		for (var i = 0; i < array_length(_names); i++) {
+			var _value = variable_struct_get(_struct, _names[i]);
+			variable_struct_set(backgroundStruct, _names[i], _value);
+		}
+	}
+	
 	popThisView = function() {
 		instance_create_depth(0, 0, 0, oTransitionCut);
 		ds_stack_pop(global.viewStack);	
+		ds_stack_top(global.viewStack).initialized = false;
+	}
+	
+	init = function() {
+		initialized = false;	
 	}
 	
 	step = function() {
+		if (!initialized) {
+			init();
+			initialized = true;
+		}
 		getInput();
 		
 		// Caso tenhamos mensagem:
@@ -36,6 +60,7 @@ function View() constructor {
 			}
 		} else if (!is_undefined(functionToCall)) {
 			functionToCall();
+			functionToCall = undefined;
 		} else if (array_length(actions) > 1) {
 			// Selecionar ação
 			var _yAxis = sign(downKey - upKey)
@@ -63,8 +88,8 @@ function View() constructor {
 	
 	drawBackground = function() {
 		// Desenhar plano de fundo
-		var _c1 = c_navy;
-		var _c2 = c_navy;
+		var _c1 = backgroundStruct.bgColor;
+		var _c2 = backgroundStruct.bgColor;
 		draw_rectangle_color(0, 0, global.guiWidth, global.guiHeight, _c1, _c1, _c2, _c2, false);
 	}
 	
@@ -143,9 +168,15 @@ function InventoryView() : View() constructor {
 	
 	canReturn = true;
 	
+	setupBackground({
+		bgColor: c_dkgray,
+		textColor: c_white
+	}) 
+	
 	mainDraw = function() {
 		draw_set_halign(fa_center);
-		draw_text(global.guiWidth/2, 100, "desenhando inventario");
+		draw_set_color(backgroundStruct.textColor);
+		draw_text(global.guiWidth/2, 100, "~desenhando inventario~");
 	}
 };
 
@@ -183,6 +214,7 @@ function CutsceneView(_textsArray) : View() constructor {
 	mainDraw = function() {
 		var _text = texts[actualTextIndex];
 		draw_set_alpha(textAlpha);
+		draw_set_color(backgroundStruct.textColor);
 		draw_text_ext(global.guiWidth/2, global.guiHeight/2, _text, 20, global.guiWidth * 0.80);
 		draw_set_alpha(1);
 	}

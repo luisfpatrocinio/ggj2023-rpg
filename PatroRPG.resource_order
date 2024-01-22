@@ -73,6 +73,7 @@
     {"name":"sSklug","order":16,"path":"sprites/sSklug/sSklug.yy",},
     {"name":"sSlime_View3","order":21,"path":"sprites/sSlime_View3/sSlime_View3.yy",},
     {"name":"sSlug","order":22,"path":"sprites/sSlug/sSlug.yy",},
+    {"name":"sndGroan4","order":2,"path":"sounds/sndGroan4/sndGroan4.yy",},
     {"name":"sSeaWorm","order":14,"path":"sprites/sSeaWorm/sSeaWorm.yy",},
     {"name":"GMLive_seekEval","order":5,"path":"scripts/GMLive_seekEval/GMLive_seekEval.yy",},
     {"name":"Input","order":3,"path":"scripts/Input/Input.yy",},
