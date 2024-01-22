@@ -17,6 +17,7 @@
     {"name":"System","order":1,"path":"folders/Scripts/Ultimate Camera/System.yy",},
     {"name":"Utils","order":6,"path":"folders/Scripts/Utils.yy",},
     {"name":"Essentials (Old Menu & Input System)","order":1,"path":"folders/Scripts/Utils/Essentials (Old Menu & Input System).yy",},
+    {"name":"Audio","order":17,"path":"folders/Audio.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"Actions","order":5,"path":"scripts/Actions/Actions.yy",},
@@ -27,6 +28,7 @@
     {"name":"sTusk","order":36,"path":"sprites/sTusk/sTusk.yy",},
     {"name":"oControl","order":2,"path":"objects/oControl/oControl.yy",},
     {"name":"sSkull","order":18,"path":"sprites/sSkull/sSkull.yy",},
+    {"name":"sndConfirm","order":1,"path":"sounds/sndConfirm/sndConfirm.yy",},
     {"name":"GMLive_roomLoader","order":2,"path":"scripts/GMLive_roomLoader/GMLive_roomLoader.yy",},
     {"name":"GMLive_node","order":2,"path":"scripts/GMLive_node/GMLive_node.yy",},
     {"name":"sWyvern2","order":45,"path":"sprites/sWyvern2/sWyvern2.yy",},
@@ -99,6 +101,7 @@
     {"name":"sSquid3","order":29,"path":"sprites/sSquid3/sSquid3.yy",},
     {"name":"sWhiteDragon","order":39,"path":"sprites/sWhiteDragon/sWhiteDragon.yy",},
     {"name":"GMLive_compiler","order":1,"path":"scripts/GMLive_compiler/GMLive_compiler.yy",},
+    {"name":"playSFX","order":7,"path":"scripts/playSFX/playSFX.yy",},
     {"name":"GMLive_noDeactivate","order":3,"path":"scripts/GMLive_noDeactivate/GMLive_noDeactivate.yy",},
     {"name":"GMLive_tools","order":1,"path":"scripts/GMLive_tools/GMLive_tools.yy",},
     {"name":"sSea_Monster","order":13,"path":"sprites/sSea_Monster/sSea_Monster.yy",},

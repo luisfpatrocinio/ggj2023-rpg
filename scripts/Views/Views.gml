@@ -9,22 +9,47 @@ function View() constructor {
 	
 	canReturn = false;
 	
+	functionToCall = undefined;
+	
+	popThisView = function() {
+		instance_create_depth(0, 0, 0, oTransitionCut);
+		ds_stack_pop(global.viewStack);	
+	}
+	
 	step = function() {
 		getInput();
 		
 		// Caso tenhamos mensagem:
-		if (ds_queue_head(global.messageStack) != undefined) {
+		if (ds_queue_head(global.messageQueue) != undefined) {
 			// Apertar tecla para avançar.
 			if (pressedKey) {
-				ds_queue_dequeue(global.messageStack);
+				ds_queue_dequeue(global.messageQueue);
+				
+				// Ao fim da mensagem, adicionar à stack a view guardada em memória, caso haja.
+				if (ds_queue_size(global.messageQueue) <= 0) {
+					if (!is_undefined(global.viewToBePushed)) {
+						instance_create_depth(0, 0, 0, oTransitionCut);
+						ds_stack_push(global.viewStack, global.viewToBePushed);	
+						global.viewToBePushed = undefined;
+					}
+				}
 			}
+		} else if (!is_undefined(functionToCall)) {
+			functionToCall();
 		} else if (array_length(actions) > 1) {
 			// Selecionar ação
-			selectedAction += sign(downKey - upKey);
+			var _yAxis = sign(downKey - upKey)
+			selectedAction += _yAxis;
 			selectedAction = uc_wrap(selectedAction, 0, array_length(actions));
+			if (_yAxis != 0) {
+				playSFX(sndCursor);
+				actions[selectedAction].selectedTimer = 4;
+			}
+			
 				
 			// Confirmar
 			if (pressedKey) {
+				playSFX(sndConfirm);
 				actions[selectedAction].callback();
 			}
 		} else {
@@ -32,6 +57,7 @@ function View() constructor {
 			if (canReturn && cancelKey) {
 				ds_stack_pop(global.viewStack);	
 			}
+
 		}
 	}
 	
@@ -76,17 +102,23 @@ function View() constructor {
 	}
 	
 	draw = function() {	
+		if (!is_undefined(functionToCall) && ds_queue_size(global.messageQueue) <= 0) {
+			var _c = c_black;
+			draw_rectangle_color(0, 0, global.guiWidth, global.guiHeight, _c, _c, _c, _c, false);
+			return
+		}
+		
 		drawBackground();
 		
 		drawHeader();
 		
 		// Caso tenhamos mensagem:
-		if (ds_queue_size(global.messageStack) > 0) {
-			drawMessage(ds_queue_head(global.messageStack));
+		if (ds_queue_size(global.messageQueue) > 0) {
+			drawMessage(ds_queue_head(global.messageQueue));
 			
-			if (ds_queue_size(global.messageStack) > 1) {
+			if (ds_queue_size(global.messageQueue) > 1) {
 				draw_set_color(c_orange);
-				draw_text(global.guiWidth/2, global.guiHeight - 32, "[NEXT]");	
+				draw_text(global.guiWidth/2, global.guiHeight - 64, "[NEXT]");	
 			}
 			
 		// Exibir ações
@@ -140,8 +172,7 @@ function CutsceneView(_textsArray) : View() constructor {
 					timerToAdvance = 240;
 				}
 			} else {
-				instance_create_depth(0, 0, 0, oTransitionCut);
-				ds_stack_pop(global.viewStack);	
+				popThisView();
 			}
 		} else {
 			getInput();

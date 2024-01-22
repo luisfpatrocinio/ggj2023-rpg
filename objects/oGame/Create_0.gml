@@ -1,5 +1,7 @@
 /// @description 
+live_auto_call 
 global.viewStack = ds_stack_create();
+global.viewToBePushed = undefined;
 
 function Entity() constructor {
 	// Atributos:
@@ -70,22 +72,42 @@ player.level = 1;
 
 enemies = [];
 
-// Cria a primeira tela, de testes: 
+// Cria tela de testes: Floresta Debug
 var _startView = new View();
-	_startView.header = "View de testes.";
+	_startView.header = "Floresta Debug";
 	_startView.actions = [
 		new Action("Explorar", function() {
 			addMessage("Você está explorando.");
-			if (irandom(3) == 0) {
-				addMessage("Opa deu sorte hein.");
+			
+			var mensagens = [
+		        "Você caminha entre as árvores de bits da Floresta Debug. Os ramos formam padrões estranhos e intrigantes.",
+		        "Ao se aprofundar na Floresta Debug, você encontra um caminho de linhas de código. Será que é seguro seguir por aqui?",
+		        "Entre os arbustos de variáveis, você avista um coelho peculiar. Ele parece estar fazendo loop em torno de um ponto indefinido.",
+		    ];
+			
+			var _randInd = irandom(array_length(mensagens) - 1);
+			addMessage(mensagens[_randInd]);
+			
+			if (_randInd == 1) {
+				var _nextView = new View();
+					_nextView.header = "Profundezas da Floresta Debug";
+					_nextView.actions = [
+						new Action("Explorar", function() {
+							addMessage("Parece que nada foi implementado aqui ainda.");
+						}),
+						new InventoryAction(),
+						new Action("Sair", function() {
+							addMessage("Realmente é melhor voltar para o caminho seguro.");	
+							ds_stack_top(global.viewStack).functionToCall = function() {
+								ds_stack_top(global.viewStack).popThisView();
+							}
+						})
+					];
+					global.viewToBePushed = _nextView;
+			
 			}
 		}),
-		new Action("Inventário", function() {
-			ds_stack_push(global.viewStack, new InventoryView());	
-		}),
-		new Action("Sair", function() {
-			addMessage("Saindo...");	
-		})
+		new InventoryAction()
 	];
 ds_stack_push(global.viewStack, _startView);
 

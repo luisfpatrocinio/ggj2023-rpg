@@ -1,8 +1,8 @@
-global.messageStack = ds_queue_create();
+global.messageQueue = ds_queue_create();
 
 function addMessage(msg) {
 	var _message = new Message(msg);
-	ds_queue_enqueue(global.messageStack, _message);
+	ds_queue_enqueue(global.messageQueue, _message);
 }
 
 ///@func drawMessage()

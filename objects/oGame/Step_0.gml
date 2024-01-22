@@ -1,4 +1,5 @@
 /// @description 
+live_auto_call 
 // Operar view atual:
 var _view = ds_stack_top(global.viewStack);
 if (!is_undefined(_view)) {
