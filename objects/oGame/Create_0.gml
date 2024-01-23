@@ -3,72 +3,14 @@ live_auto_call
 global.viewStack = ds_stack_create();
 global.viewToBePushed = undefined;
 
+// História
 global.creatureFound = false;
 
-global.selectedText = 0;
 
-function Entity() constructor {
-	// Atributos:
-	name = "";
-	level = 0;
-	hpMax = 10;
-	hp = hpMax;
-	mpMax = 10;
-	mp = mpMax;
-	attack = 0;
-	defense = 0;
-	
-	// Métodos:
-	toString = function() {
-		return "Nome: " + name + "\nNível: " + string(level) + "\nVida: " + string(hp) + "/" + string(hpMax) + "\nMana: " + string(mp) + "/" + string(mpMax) + "\nAtaque: " + string(attack) + "\nDefesa: " + string(defense);	
-	}
-	
-	drawInfo = function() {
-		draw_set_font(fntGame);
-		draw_set_color(c_black);
-		draw_set_halign(fa_left);
-		draw_text(x, y, toString());
-	}
-	
-	init = function() {
-		hp = hpMax;
-		mp = mpMax;
-	}
-	
-	takeDamage = function(amount) {
-		hp -= amount;
-		if (hp < 0) hp = 0;
-		addMessageToStack(string("{0} recebeu {1} de dano!", name, amount));
-	}
-}
 
-function Player() : Entity() constructor {
-	expPoints = 0;
-	
-	
-	
-	drawInfo = function(x, y) {
-		draw_set_font(fntGame);
-		draw_set_color(c_black);
-		draw_set_halign(fa_center);
-		var _str = string("", name, level, );
-		draw_text(x, y, toString());
-	}
-}
 
-function Enemy() : Entity() constructor {
-	sprite = sMimic;
-	
-	drawInfo = function(x, y) {
-		draw_sprite(sprite, 0, x, y);
-		
-		draw_set_font(fntGame);
-		draw_set_color(c_black);
-		draw_set_halign(fa_center);
-		var _str = string("Nome: {0}\nNível: {1}", name, level);
-		draw_text(x, y, _str);
-	}
-}
+
+
 
 player = new Player();
 player.name = "Patrocinio";
@@ -97,8 +39,6 @@ var _startView = new View();
 			
 			var _randInd = 1;
 			addMessage(mensagens[_randInd]);
-			global.selectedText++;
-			global.selectedText = uc_wrap(global.selectedText, 0, 3);
 			
 			if (_randInd == 1) {
 				var _nextView = new View();
@@ -127,7 +67,12 @@ var _startView = new View();
 									global.creatureFound = true;	
 								}
 							} else {
-								addMessage("Melhor não mexer com esse diabo.");	
+								addMessage("O monstro inicia um ataque!");
+								scheduleAction(function() {
+									var _battleView = new BattleView();
+										_battleView.enemies = [new Mushroom()];
+									pushView(_battleView);
+								});
 							}
 						}),
 						new InventoryAction(),

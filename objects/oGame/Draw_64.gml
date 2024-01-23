@@ -4,7 +4,7 @@ var gui_width = global.guiWidth;
 var gui_height = global.guiHeight;
 display_set_gui_size(gui_width, gui_height);
 
-player.drawInfo(gui_width/2, gui_height * 3/4);
+//player.drawInfo(gui_width/2, gui_height * 3/4);
 
 enemiesNumber = array_length(enemies);
 spac = 240;

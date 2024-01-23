@@ -1,3 +1,15 @@
+///@func scheduleAction(_function)
+///@param _function {function}
+function scheduleAction(_function) {
+	ds_stack_top(global.viewStack).functionToCall = _function;
+}
+
+///@func pushView(_view)
+///@param _view {View} View to be added
+function pushView(_view) {
+	ds_stack_push(global.viewStack, _view);	
+}
+
 ///@func View()
 ///@desc Tela a ser exibida e adicionada na global.viewStack.
 function View() constructor {
@@ -67,14 +79,14 @@ function View() constructor {
 			selectedAction += _yAxis;
 			selectedAction = uc_wrap(selectedAction, 0, array_length(actions));
 			if (_yAxis != 0) {
-				playSFX(sndCursor);
+				Audio(sndCursor);
 				actions[selectedAction].selectedTimer = 4;
 			}
 			
 				
 			// Confirmar
 			if (pressedKey) {
-				playSFX(sndConfirm);
+				Audio(sndConfirm);
 				actions[selectedAction].callback();
 			}
 		} else {
