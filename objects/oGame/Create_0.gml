@@ -6,7 +6,8 @@ global.viewToBePushed = undefined;
 // História
 global.creatureFound = false;
 
-
+// Items
+global.inventory = [];
 
 
 

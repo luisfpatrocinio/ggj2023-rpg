@@ -185,10 +185,55 @@ function InventoryView() : View() constructor {
 		textColor: c_white
 	}) 
 	
+	inventoryUnique = [];
+	
+	getUniqueInventory = function() {
+		for (var i = 0; i < array_length(global.inventory); i++) {
+			item = global.inventory[i];
+			var _a = array_find_index(inventoryUnique, function(_item) {
+				return _item.id == item.id;
+			})
+			if (_a != -1) {
+				// O item existe no array de inventario unico
+				continue;
+			}
+			
+			array_push(inventoryUnique, item);
+		}
+		
+		return inventoryUnique;
+	}
+	
 	mainDraw = function() {
 		draw_set_halign(fa_center);
 		draw_set_color(backgroundStruct.textColor);
 		draw_text(global.guiWidth/2, 100, "~desenhando inventario~");
+		
+		// Precisamos formar um array com tipos únicos de items.
+		var _inventoryArray = getUniqueInventory();
+		
+		var _columns = 2;
+		var _rows = 5;
+		for (var i = 0; i < _columns; i++) {
+			for (var j = 0; j < _rows; j++) {
+				var _n = i + j * _columns;
+				if (_n < array_length(_inventoryArray)) {
+					var _item = _inventoryArray[_n];
+					var _spac = global.guiWidth/4;
+					var _x = global.guiWidth / 2 - _spac + _spac * 2 * i;
+					var _y = global.guiHeight / 3 + 32 * j;
+					draw_text(_x, _y, _item.name);
+					
+					var _qnt = 0;
+					for (var k = 0; k < array_length(global.inventory); k++) {
+						if (global.inventory[_qnt].id == _item.id) {
+							_qnt++;	
+						}
+					}
+					draw_text(_x, _y + 16, _qnt);
+				}
+			}
+		}
 	}
 };
 

@@ -18,7 +18,7 @@ enemiesStartX = global.guiWidth / 2 - totalWidth / 2;
 // Itera sobre os inimigos
 array_foreach(enemies, function(_item, _index) {
     var _x = enemiesStartX + spac * _index;
-    _item.drawInfo(_x, 240);
+    //_item.drawInfo(_x, 240);
 });
 
 // Desenhar a view atual:

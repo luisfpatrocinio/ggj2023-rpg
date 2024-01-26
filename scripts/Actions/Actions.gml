@@ -40,6 +40,6 @@ function Action(_name, _function) constructor {
 
 function InventoryAction() : Action("Inventário", undefined) constructor {
 	callback = function() {
-		ds_stack_push(global.viewStack, new InventoryView());	
+		pushView(new InventoryView());
 	};
 }

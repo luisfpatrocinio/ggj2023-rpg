@@ -12,12 +12,12 @@
     {"name":"Objects","order":11,"path":"folders/Objects.yy",},
     {"name":"Rooms","order":10,"path":"folders/Rooms.yy",},
     {"name":"Scripts","order":15,"path":"folders/Scripts.yy",},
+    {"name":"Entities","order":11,"path":"folders/Scripts/Entities.yy",},
     {"name":"System","order":1,"path":"folders/Scripts/Ultimate Camera/System.yy",},
     {"name":"Utils","order":1,"path":"folders/Scripts/Utils.yy",},
     {"name":"Essentials (Old Menu & Input System)","order":1,"path":"folders/Scripts/Utils/Essentials (Old Menu & Input System).yy",},
     {"name":"Sprites","order":13,"path":"folders/Sprites.yy",},
     {"name":"Monsters","order":1,"path":"folders/Sprites/Monsters.yy",},
-    {"name":"Entities","order":11,"path":"folders/Scripts/Entities.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"Actions","order":6,"path":"scripts/Actions/Actions.yy",},
