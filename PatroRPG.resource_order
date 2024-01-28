@@ -28,6 +28,7 @@
     {"name":"sTusk","order":36,"path":"sprites/sTusk/sTusk.yy",},
     {"name":"oControl","order":2,"path":"objects/oControl/oControl.yy",},
     {"name":"sSkull","order":18,"path":"sprites/sSkull/sSkull.yy",},
+    {"name":"shPatro","order":18,"path":"shaders/shPatro/shPatro.yy",},
     {"name":"sndConfirm","order":1,"path":"sounds/sndConfirm/sndConfirm.yy",},
     {"name":"GMLive_roomLoader","order":2,"path":"scripts/GMLive_roomLoader/GMLive_roomLoader.yy",},
     {"name":"GMLive_node","order":2,"path":"scripts/GMLive_node/GMLive_node.yy",},

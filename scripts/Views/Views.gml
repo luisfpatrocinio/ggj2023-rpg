@@ -48,6 +48,10 @@ function View() constructor {
 		initialized = false;	
 	}
 	
+	mainStep = function() {
+		
+	}
+	
 	step = function() {
 		if (!initialized) {
 			init();
@@ -79,23 +83,24 @@ function View() constructor {
 			selectedAction += _yAxis;
 			selectedAction = uc_wrap(selectedAction, 0, array_length(actions));
 			if (_yAxis != 0) {
-				Audio(sndCursor);
+				playSFX(sndCursor);
 				actions[selectedAction].selectedTimer = 4;
 			}
-			
 				
 			// Confirmar
 			if (pressedKey) {
-				Audio(sndConfirm);
+				playSFX(sndConfirm);
 				actions[selectedAction].callback();
 			}
 		} else {
 			// Retornar
 			if (canReturn && cancelKey) {
+				show_debug_message("Retornando view...");
 				ds_stack_pop(global.viewStack);	
 			}
-
 		}
+		
+		mainStep();
 	}
 	
 	drawBackground = function() {
@@ -180,12 +185,22 @@ function InventoryView() : View() constructor {
 	
 	canReturn = true;
 	
+	inventoryUnique = [];
+	
+	itemRows = 5;
+	itemColumns = 2;
+	itemPage = 0;
+	selectedItem = 0;
+	
+	init = function() {
+		show_debug_message("Inventory View Initialized.");
+		inventoryUnique = getUniqueInventory();
+	}
+	
 	setupBackground({
 		bgColor: c_dkgray,
 		textColor: c_white
 	}) 
-	
-	inventoryUnique = [];
 	
 	getUniqueInventory = function() {
 		for (var i = 0; i < array_length(global.inventory); i++) {
@@ -204,32 +219,62 @@ function InventoryView() : View() constructor {
 		return inventoryUnique;
 	}
 	
+	mainStep = function() {
+		var _itemsNmb = array_length(inventoryUnique);
+		
+		if (_itemsNmb <= 0) return;
+		
+		// Selecionar item.
+		var _yAxis = sign(downKey - upKey)
+		selectedItem += itemColumns * _yAxis;
+		selectedItem = uc_wrap(selectedItem, 0, _itemsNmb);
+		if (_yAxis != 0) {
+			playSFX(sndCursor);
+		}
+		
+		var _xAxis = sign(rightKey - leftKey);
+		selectedItem += _xAxis;
+		selectedItem = uc_wrap(selectedItem, 0, _itemsNmb);
+		if (_xAxis != 0) {
+			playSFX(sndCursor);	
+		}
+			
+		// Confirmar item.
+		if (pressedKey) {
+			playSFX(sndConfirm);
+		}
+	}
+	
+	countItems = function(_item) {
+		var _itemId = _item.id;
+		var _qnt = 0;
+		for (var k = 0; k < array_length(global.inventory); k++) {
+			if (global.inventory[k].id == _itemId) {
+				_qnt++;	
+			}
+		}
+		
+		return _qnt
+	}
+	
 	mainDraw = function() {
 		draw_set_halign(fa_center);
 		draw_set_color(backgroundStruct.textColor);
 		draw_text(global.guiWidth/2, 100, "~desenhando inventario~");
 		
-		// Precisamos formar um array com tipos únicos de items.
-		var _inventoryArray = getUniqueInventory();
-		
-		var _columns = 2;
-		var _rows = 5;
-		for (var i = 0; i < _columns; i++) {
-			for (var j = 0; j < _rows; j++) {
-				var _n = i + j * _columns;
-				if (_n < array_length(_inventoryArray)) {
-					var _item = _inventoryArray[_n];
+		for (var i = 0; i < itemColumns; i++) {
+			for (var j = 0; j < itemRows; j++) {
+				var _n = i + j * itemColumns;
+				if (_n < array_length(inventoryUnique)) {
+					var _item = inventoryUnique[_n];
 					var _spac = global.guiWidth/4;
 					var _x = global.guiWidth / 2 - _spac + _spac * 2 * i;
 					var _y = global.guiHeight / 3 + 32 * j;
-					draw_text(_x, _y, _item.name);
+				
+					var _col = selectedItem == _n ? c_lime : c_white;
+					draw_text_color(_x, _y, _item.name, _col, _col, _col, _col, 1.0);
 					
-					var _qnt = 0;
-					for (var k = 0; k < array_length(global.inventory); k++) {
-						if (global.inventory[_qnt].id == _item.id) {
-							_qnt++;	
-						}
-					}
+					var _qnt = countItems(_item);
 					draw_text(_x, _y + 16, _qnt);
 				}
 			}

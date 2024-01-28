@@ -9,5 +9,9 @@ if (keyboard_check_pressed(vk_f2)) {
 }
 
 if (keyboard_check_pressed(vk_f3)) {
-	obtainItem(new TestItem());
+	obtainItem(new Potion());
+}
+
+if (keyboard_check_pressed(vk_f4)) {
+	obtainItem(new HiPotion());
 }

@@ -21,7 +21,7 @@ function uc_wrap(argument0, argument1, argument2) {
 		Returns:
 			- Returns wraped value
 	*/
-
+	
 	var range = maximum - minimum;
 	while(val >= maximum) val -= range;
 	while(val < minimum) val += range;

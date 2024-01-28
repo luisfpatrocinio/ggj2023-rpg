@@ -58,6 +58,7 @@
     {"id":{"name":"sTusk","path":"sprites/sTusk/sTusk.yy",},},
     {"id":{"name":"oControl","path":"objects/oControl/oControl.yy",},},
     {"id":{"name":"sSkull","path":"sprites/sSkull/sSkull.yy",},},
+    {"id":{"name":"shPatro","path":"shaders/shPatro/shPatro.yy",},},
     {"id":{"name":"sndConfirm","path":"sounds/sndConfirm/sndConfirm.yy",},},
     {"id":{"name":"GMLive_roomLoader","path":"scripts/GMLive_roomLoader/GMLive_roomLoader.yy",},},
     {"id":{"name":"GMLive_node","path":"scripts/GMLive_node/GMLive_node.yy",},},

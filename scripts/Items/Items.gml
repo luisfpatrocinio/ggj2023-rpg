@@ -14,12 +14,21 @@ function Item() constructor {
 	id = "";
 	name = "Item";
 	
+	callback = function() {
+		playSFX(sndGroan4);	
+	}
+	
 	toString = function() {
 		return $"Item ID: {id}, name: {name}.";
 	}
 }
 
-function TestItem() : Item() constructor {
-	id = "testItem";
-	name = "Item de Teste";	
+function Potion() : Item() constructor {
+	id = "potion";
+	name = "Potion";	
+}
+
+function HiPotion() : Item() constructor {
+	id = "hiPotion";
+	name = "Hi-Potion";	
 }
