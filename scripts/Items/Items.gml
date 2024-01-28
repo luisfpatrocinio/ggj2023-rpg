@@ -1,3 +1,23 @@
+///@func countItems(_item)
+///@desc Retorna a quantidade de itens no inventário
+///@param _item {Item} Item desejado
+function countItems(_item) {
+	try {
+		if (!is_instanceof(_item, Item)) throw("Item errado.");
+		var _itemId = _item.id;
+		var _qnt = 0;
+		for (var k = 0; k < array_length(global.inventory); k++) {
+			if (global.inventory[k].id == _itemId) {
+				_qnt++;	
+			}
+		}
+		
+		return _qnt
+	} catch (_err) {
+		show_debug_message(_err.message);
+	}
+}
+
 ///@func obtainItem(_item)
 ///@desc Obtém um item determinado
 ///@param _item {Item} item a ser obtido.

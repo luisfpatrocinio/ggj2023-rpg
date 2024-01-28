@@ -245,18 +245,6 @@ function InventoryView() : View() constructor {
 		}
 	}
 	
-	countItems = function(_item) {
-		var _itemId = _item.id;
-		var _qnt = 0;
-		for (var k = 0; k < array_length(global.inventory); k++) {
-			if (global.inventory[k].id == _itemId) {
-				_qnt++;	
-			}
-		}
-		
-		return _qnt
-	}
-	
 	mainDraw = function() {
 		draw_set_halign(fa_center);
 		draw_set_color(backgroundStruct.textColor);
