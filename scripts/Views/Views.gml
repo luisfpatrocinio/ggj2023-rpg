@@ -10,6 +10,11 @@ function pushView(_view) {
 	ds_stack_push(global.viewStack, _view);	
 }
 
+///@func getActualView()
+function getActualView() {
+	return ds_stack_top(global.viewStack);	
+}
+
 ///@func View()
 ///@desc Tela a ser exibida e adicionada na global.viewStack.
 function View() constructor {
@@ -88,9 +93,11 @@ function View() constructor {
 			}
 				
 			// Confirmar
-			if (pressedKey) {
+			if (pressedKey && canInput()) {
+				show_debug_message($"Confirmando ação: {actions[selectedAction].name}");
 				playSFX(sndConfirm);
 				actions[selectedAction].callback();
+				setInputCooldown();
 			}
 		} else {
 			// Retornar

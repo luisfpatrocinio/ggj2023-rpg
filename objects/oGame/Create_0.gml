@@ -63,25 +63,26 @@ var _startView = new View();
 							if (!global.creatureFound) {
 								addMessage("O que é isso?");
 								addMessage("Uma criatura estranha surge.");
-								ds_stack_top(global.viewStack).functionToCall = function() {
+								scheduleAction(function() {
 									ds_stack_top(global.viewStack).initialized = false;
 									global.creatureFound = true;	
-								}
+								});
 							} else {
 								addMessage("O monstro inicia um ataque!");
 								scheduleAction(function() {
-									var _battleView = new BattleView();
-										_battleView.enemies = [new Mushroom()];
-									pushView(_battleView);
+									startBattle([
+										new Mushroom(),
+										new Mushroom()
+									]);
 								});
 							}
 						}),
 						new InventoryAction(),
 						new Action("Sair", function() {
 							addMessage("Realmente é melhor voltar para o caminho seguro.");	
-							ds_stack_top(global.viewStack).functionToCall = function() {
+							scheduleAction( function() {
 								ds_stack_top(global.viewStack).popThisView();
-							}
+							});
 						})
 					];
 					global.viewToBePushed = _nextView;
