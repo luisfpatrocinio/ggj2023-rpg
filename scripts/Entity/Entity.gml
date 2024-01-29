@@ -10,9 +10,11 @@ function Entity() constructor {
 	attack = 0;
 	defense = 0;
 	
+	spd = 0;
+	
 	// Métodos:
 	toString = function() {
-		return "Nome: " + name + "\nNível: " + string(level) + "\nVida: " + string(hp) + "/" + string(hpMax) + "\nMana: " + string(mp) + "/" + string(mpMax) + "\nAtaque: " + string(attack) + "\nDefesa: " + string(defense);	
+		return "Nome: " + name + "\nNível: " + string(level) + "\nVida: " + string(hp) + "/" + string(hpMax) + "\nMana: " + string(mp) + "/" + string(mpMax) + "\nAtaque: " + string(attack) + "\nDefesa: " + string(defense) + "\nSpeed: " + string(spd);	
 	}
 	
 	drawInfo = function() {
@@ -30,6 +32,6 @@ function Entity() constructor {
 	takeDamage = function(amount) {
 		hp -= amount;
 		if (hp < 0) hp = 0;
-		addMessageToStack(string("{0} recebeu {1} de dano!", name, amount));
+		addMessage(string("{0} recebeu {1} de dano!", name, amount));
 	}
 }

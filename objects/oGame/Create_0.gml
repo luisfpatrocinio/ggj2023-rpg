@@ -9,13 +9,9 @@ global.creatureFound = false;
 // Items
 global.inventory = [];
 
-
-
-
-
-player = new Player();
-player.name = "Patrocinio";
-player.level = 1;
+global.player = new Player();
+global.player.name = "Patrocinio";
+global.player.level = 1;
 
 enemies = [];
 

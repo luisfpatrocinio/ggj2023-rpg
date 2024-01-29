@@ -2,7 +2,13 @@
 function Player() : Entity() constructor {
 	expPoints = 0;
 	
+	hpMax = 10;
+	hp = hpMax;
 	
+	attack = 5;
+	defense = 2;
+	
+	spd = 5;
 	
 	drawInfo = function(x, y) {
 		draw_set_font(fntGame);

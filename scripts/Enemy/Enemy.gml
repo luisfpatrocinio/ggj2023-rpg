@@ -4,6 +4,14 @@ function Enemy() : Entity() constructor {
 }
 
 function Mushroom() : Enemy() constructor {
+	hpMax = 20;
+	hp = hpMax;
+	
+	attack = 4;
+	defense = 3;
+	
+	spd = 2;
+	
 	name = "Mushroom";
 	sprite = sMushroom;
 }

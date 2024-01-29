@@ -80,8 +80,14 @@ function View() constructor {
 				}
 			}
 		} else if (!is_undefined(functionToCall)) {
+			show_debug_message("Executando functionToCall");
+			var _oldFunctionToCall = functionToCall;
 			functionToCall();
-			functionToCall = undefined;
+			
+			// Se não criou-se uma nova função agendada, apagar.
+			if (functionToCall == _oldFunctionToCall) {
+				functionToCall = undefined;
+			}
 		} else if (array_length(actions) > 1) {
 			// Selecionar ação
 			var _yAxis = sign(downKey - upKey)
